@@ -1,30 +1,29 @@
-# Physics Simulation
+# physics-simulation
 
-2D physics playground — add balls, toggle gravity, and watch elastic collisions in real time.
+2D elastic collision playground. Add balls, mess with gravity, watch them bounce.
+
+## Physics
+
+Collision detection is circle-to-circle. On collision, velocities are exchanged using the elastic collision formula — heavier balls push lighter ones further. Wall collisions use simple reflection (`vx = -vx`, `vy = -vy`).
+
+Gravity is constant downward acceleration applied every frame. You can crank it up until everything hits the floor immediately, which is educational in a bleak sort of way.
 
 ## Features
 
-- Spawnable balls with random mass and velocity
-- Configurable gravity strength and direction
-- Elastic collision detection between balls and walls
-- Velocity vectors display
-- FPS counter and simulation controls (pause, reset, step)
-- Adjustable restitution (bounciness) coefficient
+- Click anywhere to spawn a ball (random mass, random velocity)
+- Gravity slider (0 = zero-g, 1 = Earth, higher = chaos)
+- Restitution (bounciness) coefficient — 1.0 is perfectly elastic, 0 means balls hit the floor and stop
+- Velocity vectors toggle
+- FPS counter
+- Pause / reset
 
-## Stack
-
-![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?style=flat&logo=typescript&logoColor=white)
-![React](https://img.shields.io/badge/React-61dafb?style=flat&logo=react&logoColor=black)
-![Canvas API](https://img.shields.io/badge/Canvas_API-orange?style=flat)
-![Vite](https://img.shields.io/badge/Vite-646cff?style=flat&logo=vite&logoColor=white)
-
-## Run locally
+## Run
 
 ```bash
 npm install
 npm run dev
 ```
 
----
+## Notes
 
-Made by [9bzero](https://github.com/9bzero)
+No spatial partitioning — collision checks are O(n²). Runs fine up to ~100 balls. Above that, frame rate will drop. Quadtree or spatial hashing would fix it; not worth the complexity for a demo.
